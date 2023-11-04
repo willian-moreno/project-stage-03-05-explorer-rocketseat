@@ -1,0 +1,7 @@
+{
+	"html.format.wrapAttributes": "force-expand-multiline",
+	"[html]": {
+		"editor.defaultFormatter": "vscode.html-language-features",
+		"files.encoding": "utf8"
+	}
+}

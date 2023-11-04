@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <link
+    rel="preconnect"
+    href="https://fonts.googleapis.com"
+  >
+  <link
+    rel="preconnect"
+    href="https://fonts.gstatic.com"
+    crossorigin
+  >
+
+  <meta charset="UTF-8">
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <link
+    href="https://fonts.googleapis.com/css?family=Mulish:200,300,regular,500,600,700,800,900,200italic,300italic,italic,500italic,600italic,700italic,800italic,900italic"
+    rel="stylesheet"
+  />
+  <link
+    rel="stylesheet"
+    href="./assets/css/style.css"
+  >
+
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <title>Fotoblog</title>
+</head>
+
+<body
+  class="m-0 p-0 box-border min-h-screen grid grid-rows-[auto_1fr_auto] antialiased opacity-0 transition-opacity duration-200"
+>
+  <header
+    class="min-h-[5rem] bg-white flex flex-col items-center justify-center animate-[move-in-tb_.2s_forwards_ease-in]"
+  >
+    <div class="container mx-auto md:px-28 p-4 gap-5 flex justify-between items-center">
+      <a href="#">
+        <img
+          class="min-w-[2.5rem] w-10 min-h-[2.5rem] h-10"
+          src="./assets/svgs/cam.svg"
+          alt="Ícone de uma câmera de fotografia"
+        />
+      </a>
+      <a
+        href="#home"
+        class="text-neutral-400 text-lg font-bold font-['Mulish'] leading-7 md:flex hidden"
+      >Home</a>
+      <a
+        href="#gallery"
+        class="text-neutral-800 text-lg font-bold font-['Mulish'] leading-7 md:flex hidden"
+      >Galeria</a>
+      <form>
+        <div class="input-wrapper">
+          <label
+            for="search"
+            class="hidden"
+          >Pesquise por imagens e coleções</label>
+          <input
+            id="search"
+            name="search"
+            class="xl:w-[40rem] lg:w-[30rem] md:w-[15rem] w-full h-12 px-4 py-3 opacity-60 bg-zinc-100 rounded justify-start items-center gap-3 flex text-base font-semibold font-['Mulish'] placeholder-neutral-700"
+            placeholder="Pesquise por imagens e coleções"
+          />
+        </div>
+      </form>
+      <a href="#">
+        <img
+          class="min-w-[2.5rem] w-10 min-h-[2.5rem] h-10 rounded-full"
+          src="./assets/imgs/photo.jpg"
+          alt="Foto de perfil"
+        />
+      </a>
+    </div>
+    <div class="container mx-auto md:px-28 p-4 gap-5 md:hidden flex flex-col justify-between items-center">
+      <a
+        href="#home"
+        class="text-neutral-400 text-lg font-bold font-['Mulish'] leading-7 w-full text-center rounded-lg p-2"
+      >Home</a>
+      <a
+        href="#gallery"
+        class="text-neutral-800 text-lg font-bold font-['Mulish'] leading-7 w-full text-center rounded-lg p-2"
+      >Galeria</a>
+    </div>
+  </header>
+
+  <main class="bg-neutral-50 flex justify-center">
+    <div class="container mx-auto md:px-28 p-4">
+      <h1
+        id="#gallery"
+        class="text-neutral-800 text-2xl font-bold font-['Mulish'] leading-10 mb-9"
+      >
+        Galeria
+      </h1>
+
+      <div
+        id="photos-wrapper"
+        class="grid 2xl:grid-cols-[repeat(auto-fill,minmax(350px,1fr))] md:grid-cols-[repeat(auto-fill,minmax(300px,1fr))] grid-cols-1 gap-5"
+      ></div>
+    </div>
+  </main>
+
+  <footer class="h-16 bg-white animate-[move-in-bt_.2s_forwards_reverse_ease-in]">
+    <div class="container mx-auto md:px-28 p-4 flex flex-col justify-center items-center gap-2.5 text-center">
+      <p class="text-zinc-800 text-base font-semibold font-['Mulish']">© 2023 - Rocketseat Explorer</p>
+    </div>
+  </footer>
+
+  <script type="text/javascript">
+    setTimeout(() => document.body.classList.remove('opacity-0'), 500)
+
+    const photosConfig = [
+      { queryParams: 'landscape&a=1&ar=16:9', title: 'Workspace elétrica' },
+      { queryParams: 'landscape&b=1&ar=16:9', title: 'Dark and red' },
+      { queryParams: 'landscape&c=1&ar=16:9', title: 'Organização e grids' },
+      { queryParams: 'landscape&d=1&ar=16:9', title: 'Colmeia' },
+      { queryParams: 'landscape&e=1&ar=16:9', title: 'Setup de escritor' },
+      { queryParams: 'landscape&f=1&ar=16:9', title: 'Ergonomia e cores' },
+      { queryParams: 'landscape&g=1&ar=16:9', title: 'Show de luzes' },
+      { queryParams: 'landscape&h=1&ar=16:9', title: 'Deep purple' },
+      { queryParams: 'landscape&i=1&ar=16:9', title: 'Multi-Screen' },
+    ]
+
+    /**
+     * @param {{
+     *  queryParams: string,
+     *  title: string,
+     * }[]} photosConfig
+     */
+    const mountPhotos = (photosConfig) => {
+      const photosWrapper = document.body.querySelector('#photos-wrapper')
+      const photosHtml = photosConfig.map(({ queryParams, title }, index) => {
+        const appearAnimation = `animate-[appear_.4s_${200 * index}ms_backwards]`
+
+        return `
+        <figure
+          class="bg-white rounded-lg overflow-hidden flex-col justify-start items-start inline-flex shadow ${appearAnimation}"
+        >
+          <img
+            src="https://source.unsplash.com/800x450/?${queryParams}"
+            class="w-full object-cover grayscale-[1] hover:grayscale-[0] hover:hue-rotate-[7deg] hover:scale-110 hover:rotate-[-2deg] transition-all duration-500 ease-in-out" 
+            loading="lazy"
+          >
+          <figcaption class="bg-white p-6 flex-col justify-start items-start gap-3 flex relative z-[1] w-full">
+            <h3 class="text-neutral-800 text-lg font-bold font-['Mulish'] leading-loose">${title}</h3>
+            <span
+              class="w-10 h-6 p-2 bg-neutral-100 rounded-md flex-col justify-center items-center gap-8 inline-flex text-neutral-800 text-xs font-normal font-['Mulish'] leading-tight"
+            >
+              TAG
+            </span>
+          </figcaption>
+        </figure>
+        `
+      })
+      photosWrapper.innerHTML = photosHtml.join(' ')
+    }
+
+    mountPhotos(photosConfig)
+
+    const search = document.body.querySelector('#search')
+
+    search.addEventListener('input', (event) => {
+      const value = String(event.target.value).toLocaleLowerCase()
+
+      if (!value || value.length === 0) {
+        mountPhotos(photosConfig)
+        return
+      }
+
+      const photosConfigFiltered = photosConfig.filter(({ title }) => title.toLocaleLowerCase().indexOf(value) !== -1)
+      mountPhotos(photosConfigFiltered)
+    })
+
+  </script>
+</body>
+
+</html>

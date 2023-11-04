@@ -1,0 +1,22 @@
+@keyframes move-in-tb {
+  from {
+    transform: translateY(-100%);
+  }
+}
+
+@keyframes move-in-bt {
+  from {
+    transform: translateY(100%);
+  }
+}
+
+@keyframes appear {
+  0% {
+    opacity: 0;
+    transform: scale(0.7);
+  }
+  
+  50% {
+    transform: scale(1.05);
+  }
+}
